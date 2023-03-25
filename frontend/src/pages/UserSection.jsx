@@ -32,7 +32,7 @@ import InnerNavbar from '../Components/SideBar/InnerNavbar';
 import SideBar from '../Components/SideBar/SideBar';
 
 const getUserData = async () => {
-  let res = await axios.get('http://localhost:9001/user');
+  let res = await axios.get('https://exuberant-pantyhose-moth.cyclic.app/user');
 
   return res.data;
 };
@@ -49,7 +49,7 @@ function UserSection() {
   }, []);
 
   const handalAdd = async () => {
-    await axios.post('http://localhost:9001/user/new', {
+    await axios.post('https://exuberant-pantyhose-moth.cyclic.app/user/new', {
       name: user,
     });
 
@@ -59,7 +59,7 @@ function UserSection() {
   };
 
   const handleDelete = async (id) => {
-    let res = await axios.delete(`http://localhost:9001/user/${id}`);
+    let res = await axios.delete(`https://exuberant-pantyhose-moth.cyclic.app/user/${id}`);
     getUserData().then((res) => {
       setAllUser(res);
     });

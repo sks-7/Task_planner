@@ -32,7 +32,7 @@ import axios from 'axios';
 // import './modal.css'
 
 export const getTaskData = async () => {
-  let res = await axios.get('http://localhost:9001/task');
+  let res = await axios.get('https://exuberant-pantyhose-moth.cyclic.app/task');
 
   return res.data;
 };
@@ -47,7 +47,9 @@ const TableCon = () => {
   }, [allTask]);
 
   const handleDelete = async (id) => {
-    let res = await axios.delete(`http://localhost:9001/task/${id}`);
+    let res = await axios.delete(
+      `https://exuberant-pantyhose-moth.cyclic.app/task/${id}`
+    );
     getTaskData().then((res) => {
       setAllTask(res);
     });
@@ -79,7 +81,7 @@ const TableCon = () => {
           <Tbody>
             {allTask &&
               allTask.map((ele) => (
-                <Tr bg={'#e8f5fd'}>
+                <Tr bg={'#e8f5fd'} key={ele._id}>
                   <Td>
                     <Checkbox mt={3} px={5}></Checkbox>
                   </Td>

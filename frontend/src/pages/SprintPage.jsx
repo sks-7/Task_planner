@@ -31,7 +31,7 @@ import InnerNavbar from '../Components/SideBar/InnerNavbar';
 import SideBar from '../Components/SideBar/SideBar';
 
 const getSprintdata = async () => {
-  let res = await axios.get('http://localhost:9001/sprint');
+  let res = await axios.get('https://exuberant-pantyhose-moth.cyclic.app/sprint');
 
   return res.data;
 };
@@ -48,7 +48,7 @@ function SprintPage() {
   }, []);
 
   const handalAdd = async () => {
-    await axios.post('http://localhost:9001/sprint/new', {
+    await axios.post('https://exuberant-pantyhose-moth.cyclic.app/sprint/new', {
       name: sprint,
     });
 
@@ -58,7 +58,7 @@ function SprintPage() {
   };
 
   const handleDelete = async (id) => {
-    let res = await axios.delete(`http://localhost:9001/sprint/${id}`);
+    let res = await axios.delete(`https://exuberant-pantyhose-moth.cyclic.app/sprint/${id}`);
     getSprintdata().then((res) => {
       setAllSprint(res);
     });

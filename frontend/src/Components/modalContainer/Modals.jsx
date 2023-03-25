@@ -18,7 +18,7 @@ import axios from 'axios';
 import './modal.css';
 
 const getUserData = async () => {
-  let res = await axios.get('http://localhost:9001/user');
+  let res = await axios.get('https://exuberant-pantyhose-moth.cyclic.app/user');
 
   return res.data;
 };
@@ -33,7 +33,7 @@ export default function Modals() {
   // console.log(client);
 
   const handalAdd = async () => {
-    await axios.post('http://localhost:9001/task/new', {
+    await axios.post('https://exuberant-pantyhose-moth.cyclic.app/task/new', {
       name: task,
       status: false,
 
@@ -70,7 +70,7 @@ export default function Modals() {
               >
                 {alluser &&
                   alluser.map((ele) => (
-                    <option value={ele.name}>{ele.name}</option>
+                    <option key={ele._id} value={ele.name}>{ele.name}</option>
                   ))}
               </Select>
             </div>
