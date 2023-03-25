@@ -42,7 +42,7 @@ taskControler.patch('/:id', async (req, res) => {
 taskControler.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    await taskModel.findByIdAndDelete({ _id: id });
+    await TaskModel.findByIdAndDelete({ _id: id });
     res.status(200).send({ message: 'Deleted successfully' });
   } catch (err) {
     return res.status(500).send('Internal server error');
