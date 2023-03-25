@@ -3,8 +3,6 @@ import {
   Button,
   Flex,
   Input,
-  Select,
-  Spacer,
   Table,
   TableContainer,
   Text,
@@ -13,6 +11,19 @@ import {
   Tr,
   Tbody,
   Td,
+  VStack,
+} from '@chakra-ui/react';
+
+import { BsThreeDotsVertical } from 'react-icons/bs';
+
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -42,6 +53,13 @@ function UserSection() {
       name: user,
     });
 
+    getUserData().then((res) => {
+      setAllUser(res);
+    });
+  };
+
+  const handleDelete = async (id) => {
+    let res = await axios.delete(`http://localhost:9001/user/${id}`);
     getUserData().then((res) => {
       setAllUser(res);
     });
@@ -129,7 +147,37 @@ function UserSection() {
                         .map((ele) => (
                           <Tr bg={'#e8f5fd'}>
                             <Td>{ele.name}</Td>
-                            <Td>dete user</Td>
+                            <Td>
+                              <Popover>
+                                <PopoverTrigger>
+                                  <Button>
+                                    <BsThreeDotsVertical pr="-20px" />
+                                  </Button>
+                                </PopoverTrigger>
+                                <PopoverContent>
+                                  <PopoverArrow />
+                                  <PopoverCloseButton />
+                                  <PopoverHeader>
+                                    select to Delete
+                                  </PopoverHeader>
+
+                                  <PopoverBody display={'block'}>
+                                    <VStack spacing={2}>
+                                      <Button
+                                        width={'100%'}
+                                        _hover={{
+                                          background: 'red',
+                                          color: 'white',
+                                        }}
+                                        onClick={() => handleDelete(ele._id)}
+                                      >
+                                        Delete
+                                      </Button>
+                                    </VStack>
+                                  </PopoverBody>
+                                </PopoverContent>
+                              </Popover>
+                            </Td>
                           </Tr>
                         ))}
                   </Tbody>

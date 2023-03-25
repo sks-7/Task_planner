@@ -11,6 +11,7 @@ import {
   Td,
   TableContainer,
   Checkbox,
+  Input,
 } from '@chakra-ui/react';
 
 import {
@@ -72,7 +73,7 @@ const TableCon = () => {
 
               <Th>Created Time</Th>
 
-              <Th>EDIT</Th>
+              <Th>DELETE</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -86,8 +87,7 @@ const TableCon = () => {
                   <Td>{ele.userName}</Td>
 
                   <Td>{ele.createdAt}</Td>
-                 
-                 
+
                   <Td>
                     <Popover>
                       <PopoverTrigger>
@@ -98,8 +98,8 @@ const TableCon = () => {
                       <PopoverContent>
                         <PopoverArrow />
                         <PopoverCloseButton />
-                        <PopoverHeader>select</PopoverHeader>
-                        <PopoverBody>Set as Template</PopoverBody>
+                        <PopoverHeader>select to Delete</PopoverHeader>
+
                         <PopoverBody
                           style={{ cursor: 'pointer' }}
                           _hover={{ background: 'red', color: 'white' }}

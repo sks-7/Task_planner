@@ -3,8 +3,6 @@ import {
   Button,
   Flex,
   Input,
-  Select,
-  Spacer,
   Table,
   TableContainer,
   Text,
@@ -13,6 +11,18 @@ import {
   Tr,
   Tbody,
   Td,
+} from '@chakra-ui/react';
+
+import { BsThreeDotsVertical } from 'react-icons/bs';
+
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -42,6 +52,13 @@ function SprintPage() {
       name: sprint,
     });
 
+    getSprintdata().then((res) => {
+      setAllSprint(res);
+    });
+  };
+
+  const handleDelete = async (id) => {
+    let res = await axios.delete(`http://localhost:9001/sprint/${id}`);
     getSprintdata().then((res) => {
       setAllSprint(res);
     });
@@ -129,7 +146,33 @@ function SprintPage() {
                         .map((ele) => (
                           <Tr bg={'#e8f5fd'}>
                             <Td>{ele.name}</Td>
-                            <Td>Delete Sprintprint</Td>
+                            <Td>
+                              <Popover>
+                                <PopoverTrigger>
+                                  <Button>
+                                    <BsThreeDotsVertical pr="-20px" />
+                                  </Button>
+                                </PopoverTrigger>
+                                <PopoverContent>
+                                  <PopoverArrow />
+                                  <PopoverCloseButton />
+                                  <PopoverHeader>
+                                    select to Delete
+                                  </PopoverHeader>
+
+                                  <PopoverBody
+                                    style={{ cursor: 'pointer' }}
+                                    _hover={{
+                                      background: 'red',
+                                      color: 'white',
+                                    }}
+                                    onClick={() => handleDelete(ele._id)}
+                                  >
+                                    Delte Sprint
+                                  </PopoverBody>
+                                </PopoverContent>
+                              </Popover>
+                            </Td>
                           </Tr>
                         ))}
                   </Tbody>
